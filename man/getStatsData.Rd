@@ -76,7 +76,7 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 \examples{
 getStatsList("北海道 AND 人口", surveyYears = 2008)
 hpop20 <- getStatsData("0003009759")
-head(hpop20[[1L]])
+head(hpop20@data[[1L]])
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
