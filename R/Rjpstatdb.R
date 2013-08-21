@@ -182,7 +182,7 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     res
 }
 
-print.jpstat <- function(jpstat) {
+print.jpstat <- function(jpstat, ...) {
     cat("ID: ", jpstat$id, "\n")
     cat("Stat name: ", jpstat$stat.name, "\n")
     cat("Government: ", jpstat$gov, "\n")
@@ -195,5 +195,5 @@ print.jpstat <- function(jpstat) {
         print(head(jpstat$data[[i]]))
         cat("  Dimension: ", dim(jpstat$data[[i]]), "\n")
     }
-    NextMethod("print")
+    UseMethod("print")
 }
