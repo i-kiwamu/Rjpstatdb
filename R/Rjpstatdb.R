@@ -92,26 +92,6 @@ getStatsList <- function(searchWord = "", surveyYears = "",
 }
 
 
-### Get meta information of data
-getMetaInfo <- function(statsDataId) {
-    gf <- match.call(expand.dots = FALSE)
-    m <- match(c("statsDataId"), names(gf), 0L)
-    gf <- gf[c(1L, 1L, m)]
-    gf[[1L]] <- as.name("getForm")
-    names(gf)[2L] <- "uri"
-    gf[[2L]] <- paste(.DBURL, "getMetaInfo", sep = "")
-    gf$appId <- .appId
-    gf$lang <- .lang
-    root <- xmlRoot(xmlTreeParse(eval(gf)))
-
-    status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
-    if (status != 0)
-        stop(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]))
-
-    xmlToList(root[[3L]])
-}
-
-
 ### Get data
 getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
                          limit = NULL, lvTab = "", cdTab = NULL,
