@@ -2,6 +2,7 @@
 \alias{Rjpstatdb-package}
 \alias{Rjpstatdb}
 \docType{package}
+\encoding{UTF-8}
 \title{
 R interface to statistical database organized by Japanese government
 (http://statdb.nstac.go.jp/)

@@ -11,11 +11,11 @@ library(XML)
 
 
 ### Common parameters
-DBURL <- "http://statdb.nstac.go.jp/api/1.0b/app/"
-appId <- "03f6a0a1f01ec96fdaa8920c51bebbafcab71927"
-lang <- ifelse(length(grep("ja_JP",
-                           unlist(strsplit(Sys.getlocale(), "/")))) > 0,
-               "J", "E")
+.DBURL <- "http://statdb.nstac.go.jp/api/1.0b/app/"
+.appId <- "03f6a0a1f01ec96fdaa8920c51bebbafcab71927"
+.lang <- ifelse(length(grep("ja_JP",
+                            unlist(strsplit(Sys.getlocale(), "/")))) > 0,
+                "J", "E")
 
 
 ### Get statistics information
@@ -30,9 +30,9 @@ getStatsList <- function(searchWord = "", surveyYears = "",
     gf <- gf[c(1L, 1L, m)]
     gf[[1L]] <- as.name("getForm")
     names(gf)[2L] <- "uri"
-    gf[[2L]] <- paste(DBURL, "getStatsList", sep = "")
-    gf$appId <- appId
-    gf$lang <- lang
+    gf[[2L]] <- paste(.DBURL, "getStatsList", sep = "")
+    gf$appId <- .appId
+    gf$lang <- .lang
     root <- xmlRoot(xmlTreeParse(eval(gf)))
 
     status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
@@ -64,9 +64,9 @@ getMetaInfo <- function(statsDataId) {
     gf <- gf[c(1L, 1L, m)]
     gf[[1L]] <- as.name("getForm")
     names(gf)[2L] <- "uri"
-    gf[[2L]] <- paste(DBURL, "getMetaInfo", sep = "")
-    gf$appId <- appId
-    gf$lang <- lang
+    gf[[2L]] <- paste(.DBURL, "getMetaInfo", sep = "")
+    gf$appId <- .appId
+    gf$lang <- .lang
     root <- xmlRoot(xmlTreeParse(eval(gf)))
 
     status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
@@ -90,7 +90,7 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     gf <- gf[c(1L, 1L, m)]
     gf[[1L]] <- as.name("getForm")
     names(gf)[2L] <- "uri"
-    gf[[2L]] <- paste(DBURL, "getStatsData", sep = "")
+    gf[[2L]] <- paste(.DBURL, "getStatsData", sep = "")
 
     if (length(gf$cdTab) > 1)
         gf$cdTab <- paste(gf$cdTab, collapse = ",")
@@ -99,8 +99,8 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     if (length(gf$cdArea) > 1)
         gf$cdArea <- paste(gf$cdArea, collapse = ",")
 
-    gf$appId <- appId
-    gf$lang <- lang
+    gf$appId <- .appId
+    gf$lang <- .lang
     root <- xmlRoot(xmlTreeParse(eval(gf)))
 
     status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
@@ -195,4 +195,5 @@ print.jpstat <- function(jpstat) {
         print(head(jpstat$data[[i]]))
         cat("  Dimension: ", dim(jpstat$data[[i]]), "\n")
     }
+    NextMethod("print")
 }
