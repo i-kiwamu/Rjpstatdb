@@ -18,7 +18,37 @@ library(XML)
                 "J", "E")
 
 
-### Get statistics information
+### Definition of class
+setClass(Class = "jpstat",
+         representation(data = "list", id = "character",
+                        stat.name = "character", gov = "character",
+                        statistics.name = "character",
+                        title = "character", survey.date = "character"),
+         prototype = list(
+             data = list(data.frame(0)), id = "", stat.name = "",
+             gov = "", statistics.name = "", title = "",
+             survey.date = ""))
+
+print.jpstat <- function(object) {
+    cat("ID: ", object@id, "\n")
+    cat("Stat name: ", object@stat.name, "\n")
+    cat("Government: ", object@gov, "\n")
+    cat("Statistics name: ", object@statistics.name, "\n")
+    cat("Title: ", object@title, "\n")
+    cat("Survey date: ", object@survey.date, "\n")
+    cat("Tables:\n")
+    for (i in seq(object@data)) {
+        cat("  Name: ", names(object@data)[i], "\n")
+        print(head(object@data[[i]]), ...)
+        cat("  Dimension: ", dim(object@data[[i]]), "\n")
+    }
+}
+
+setMethod(print, signature = c("jpstat"), definition = print.jpstat)
+
+
+
+### Get statistics list
 getStatsList <- function(searchWord = "", surveyYears = "",
                          openYears = "", statsField = NULL,
                          statsCode = NULL, searchKind = 1,
@@ -58,6 +88,8 @@ getStatsList <- function(searchWord = "", surveyYears = "",
     res
 }
 
+
+### Get meta information of data
 getMetaInfo <- function(statsDataId) {
     gf <- match.call(expand.dots = FALSE)
     m <- match(c("statsDataId"), names(gf), 0L)
@@ -76,6 +108,8 @@ getMetaInfo <- function(statsDataId) {
     xmlToList(root[[3L]])
 }
 
+
+### Get data
 getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
                          limit = NULL, lvTab = "", cdTab = NULL,
                          lvTime = "", cdTime = NULL,
@@ -170,7 +204,8 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     }
     names(res.data) <- name.tables
 
-    res <- jpstat(
+    res <- new(
+        "jpstat",
         data = res.data,
         id = xmlValue(getNodeSet(root[[2L]],
                       "//PARAMETER//STATS_DATA_ID")[[1L]]),
@@ -186,29 +221,4 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
                                           "//TABLE_INF//SURVEY_DATE")[[1L]]))
 
     res
-}
-
-jpstat <- function(...) UseMethod("jpstat")
-
-jpstat.default <- function(data, id, stat.name, gov, statistics.name,
-                           title, survey.date) {
-    x <- list(data, id, stat.name, gov, statistics.name, title,
-              survey.date)
-    class(x) <- "jpstat"
-    x
-}
-
-print.jpstat <- function(jpstat, ...) {
-    cat("ID: ", jpstat$id, "\n")
-    cat("Stat name: ", jpstat$stat.name, "\n")
-    cat("Government: ", jpstat$gov, "\n")
-    cat("Statistics name: ", jpstat$statistics.name, "\n")
-    cat("Title: ", jpstat$title, "\n")
-    cat("Survey date: ", jpstat$survey.date, "\n")
-    cat("Tables:\n")
-    for (i in seq(jpstat$data)) {
-        cat("  Name: ", names(jpstat$data)[i], "\n")
-        print(head(jpstat$data[[i]]), ...)
-        cat("  Dimension: ", dim(jpstat$data[[i]]), "\n")
-    }
 }
