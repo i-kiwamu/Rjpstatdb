@@ -1,6 +1,5 @@
 \name{print.jpstat}
 \alias{print.jpstat}
-\encoding{UTF-8}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 print class of jpstat
@@ -9,22 +8,19 @@ print class of jpstat
 print class of jpstat
 }
 \usage{
-print.jpstat(jpstat, ...)
+\method{print}{jpstat}(jpstat, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{jpstat}{
-object of jpstat class
+object of jpstat
 }
-\item{...}{
-  additional arguments
+  \item{\dots}{
+aditional arguments
 }
 }
 \value{
   print
-}
-\references{
-  http://statdb.nstac.go.jp/system-info/api/api-spec/
 }
 \author{
 Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
@@ -32,6 +28,10 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
+\seealso{
+\code{getStatsData}
+}
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~getStatsData }

@@ -76,10 +76,13 @@ getMetaInfo <- function(statsDataId) {
     xmlToList(root[[3L]])
 }
 
-getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
-                        limit = NULL, lvTab = "", cdTab = NULL,
-                        lvTime = "", cdTime = NULL,
-                        lvArea = "", cdArea = NULL) {
+getStatsData <- function(x, ...) UseMethod("jpstat")
+
+getStatsData.default <-
+    function(statsDataId = NULL, dataSetId = NULL,
+             limit = NULL, lvTab = "", cdTab = NULL,
+             lvTime = "", cdTime = NULL,
+             lvArea = "", cdArea = NULL) {
     if (is.null(statsDataId) & is.null(dataSetId))
         stop("Either statsDataId or dataSetId should be specified.")
 
@@ -192,8 +195,7 @@ print.jpstat <- function(jpstat, ...) {
     cat("Tables:\n")
     for (i in seq(jpstat$data)) {
         cat("  Name: ", names(jpstat$data)[i], "\n")
-        print(head(jpstat$data[[i]]))
+        print(head(jpstat$data[[i]]), ...)
         cat("  Dimension: ", dim(jpstat$data[[i]]), "\n")
     }
-    UseMethod("print")
 }
