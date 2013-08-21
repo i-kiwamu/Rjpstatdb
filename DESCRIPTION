@@ -8,3 +8,4 @@ Maintainer: Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 Description: R interface to statistical database organized by Japanese government (http://statdb.nstac.go.jp/)
 Depends: RCurl, XML
 License: GPL (>= 2)
+URL: https://github.com/i-kiwamu/Rjpstatdb

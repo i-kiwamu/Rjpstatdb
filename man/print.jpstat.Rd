@@ -1,5 +1,4 @@
 \name{print.jpstat}
-\docType{methods}
 \alias{print.jpstat}
 \alias{print,jpstat-method}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -9,9 +8,7 @@ print object of jpstat
 \description{
 print object of jpstat
 }
-\usage{
-\method{print.jpstat}(object)
-}
+\usage{print.jpstat(x, ...)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
