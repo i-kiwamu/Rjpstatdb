@@ -6,6 +6,7 @@
 ######################################################################
 
 ### required packages
+library(methods)
 library(RCurl)
 library(XML)
 

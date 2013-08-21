@@ -8,7 +8,7 @@ print object of jpstat
 \description{
 print object of jpstat
 }
-\usage{print.jpstat(x, ...)}
+\usage{\method{print}{jpstat}(x, ...)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
