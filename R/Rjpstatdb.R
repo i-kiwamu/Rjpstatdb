@@ -76,13 +76,10 @@ getMetaInfo <- function(statsDataId) {
     xmlToList(root[[3L]])
 }
 
-getStatsData <- function(x, ...) UseMethod("jpstat")
-
-getStatsData.default <-
-    function(statsDataId = NULL, dataSetId = NULL,
-             limit = NULL, lvTab = "", cdTab = NULL,
-             lvTime = "", cdTime = NULL,
-             lvArea = "", cdArea = NULL) {
+getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
+                         limit = NULL, lvTab = "", cdTab = NULL,
+                         lvTime = "", cdTime = NULL,
+                         lvArea = "", cdArea = NULL) {
     if (is.null(statsDataId) & is.null(dataSetId))
         stop("Either statsDataId or dataSetId should be specified.")
 
@@ -173,16 +170,32 @@ getStatsData.default <-
     }
     names(res.data) <- name.tables
 
-    res <- list(data = res.data,
-                id = xmlValue(getNodeSet(root[[2L]], "//PARAMETER//STATS_DATA_ID")[[1L]]),
-                stat.name = xmlValue(getNodeSet(root[[3L]][[1L]], "//TABLE_INF//STAT_NAME")[[1L]]),
-                gov = xmlValue(getNodeSet(root[[3L]][[1L]], "//TABLE_INF//GOV_ORG")[[1L]]),
-                statistics.name = xmlValue(getNodeSet(root[[3L]][[1L]], "//TABLE_INF//STATISTICS_NAME")[[1L]]),
-                title = xmlValue(getNodeSet(root[[3L]][[1L]], "//TABLE_INF//TITLE")[[1L]]),
-                survey.date = xmlValue(getNodeSet(root[[3L]][[1L]], "//TABLE_INF//SURVEY_DATE")[[1L]]))
-    class(res) <- "jpstat"
+    res <- jpstat(
+        data = res.data,
+        id = xmlValue(getNodeSet(root[[2L]],
+                      "//PARAMETER//STATS_DATA_ID")[[1L]]),
+        stat.name = xmlValue(getNodeSet(root[[3L]][[1L]],
+                             "//TABLE_INF//STAT_NAME")[[1L]]),
+        gov = xmlValue(getNodeSet(root[[3L]][[1L]],
+                                  "//TABLE_INF//GOV_ORG")[[1L]]),
+        statistics.name = xmlValue(getNodeSet(root[[3L]][[1L]],
+                                              "//TABLE_INF//STATISTICS_NAME")[[1L]]),
+        title = xmlValue(getNodeSet(root[[3L]][[1L]],
+                                    "//TABLE_INF//TITLE")[[1L]]),
+        survey.date = xmlValue(getNodeSet(root[[3L]][[1L]],
+                                          "//TABLE_INF//SURVEY_DATE")[[1L]]))
 
     res
+}
+
+jpstat <- function(...) UseMethod("jpstat")
+
+jpstat.default <- function(data, id, stat.name, gov, statistics.name,
+                           title, survey.date) {
+    x <- list(data, id, stat.name, gov, statistics.name, title,
+              survey.date)
+    class(x) <- "jpstat"
+    x
 }
 
 print.jpstat <- function(jpstat, ...) {

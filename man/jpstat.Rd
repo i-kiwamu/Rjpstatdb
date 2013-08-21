@@ -1,26 +1,26 @@
-\name{print.jpstat}
-\alias{print.jpstat}
+\name{jpstat}
+\alias{jpstat}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-print class of jpstat
+Make jpstat object
 }
 \description{
-print class of jpstat
+Make jpstat object
 }
 \usage{
-\method{print}{jpstat}(jpstat, \dots)
+jpstat(...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{jpstat}{
-object of jpstat
-}
   \item{\dots}{
-aditional arguments
+required arguments
 }
+}
+\details{
+This function is only for internal usages.
 }
 \value{
-  print
+jpstat object
 }
 \author{
 Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
@@ -28,9 +28,6 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-\code{getStatsData}
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~getStatsData }
+\keyword{ ~jpstat }
