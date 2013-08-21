@@ -10,7 +10,7 @@ print object of jpstat
 print object of jpstat
 }
 \usage{
-\S4method{print.jpstat}(object)
+\method{print.jpstat}(object)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

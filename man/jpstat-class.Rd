@@ -2,7 +2,7 @@
 \Rdversion{0.1}
 \docType{class}
 \alias{jpstat-class}
-\alias{show,jpstat-method}
+%%\alias{show,jpstat-method}
 
 \title{Class \code{"jpstat"}}
 \description{
