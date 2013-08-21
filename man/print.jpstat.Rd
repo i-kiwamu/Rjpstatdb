@@ -11,9 +11,10 @@ print object of jpstat
 \usage{print.jpstat(x, ...)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{object}{
+  \item{x}{
 object of jpstat
 }
+  \item{\dots}{additional arguments}
 }
 \value{
   print
