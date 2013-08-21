@@ -44,7 +44,9 @@ print.jpstat <- function(object) {
     }
 }
 
-setMethod(print, signature = c("jpstat"), definition = print.jpstat)
+setMethod(f = "print",
+          signature = c("jpstat"),
+          definition = print.jpstat)
 
 
 
