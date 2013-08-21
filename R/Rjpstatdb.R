@@ -69,8 +69,12 @@ getStatsList <- function(searchWord = "", surveyYears = "",
     root <- xmlRoot(xmlTreeParse(eval(gf)))
 
     status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
-    if (status != 0)
+    if (status >= 100)
         stop(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]))
+    else if (status == 1) {
+        cat(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]), "\n")
+        return(invisible(NULL))
+    }
 
     ResList <- root[[3L]][names(root[[3L]]) == "LIST_INF"]
     res <- data.frame(
@@ -121,8 +125,12 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     root <- xmlRoot(xmlTreeParse(eval(gf)))
 
     status <- as.numeric(xmlValue(root[[1L]]["STATUS"][[1L]]))
-    if (status != 0)
+    if (status >= 100)
         stop(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]))
+    else if (status == 1) {
+        cat(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]), "\n")
+        return(invisible(NULL))
+    }
 
     ## Tables
     tables <- getNodeSet(root[[3L]][[2L]],

@@ -29,7 +29,7 @@ http://statdb.nstac.go.jp/
 \keyword{ Rjpstatdb }
 \keyword{ Gateway to Advanced and User-friendly Statistics Services }
 \examples{
-getStatsList("北海道 AND 人口", surveyYears = 2008)
+getStatsList("Hokkaido AND population", surveyYears = 2008)
 hpop20 <- getStatsData("0003009759")
 head(hpop20@data[[1L]])
 }
