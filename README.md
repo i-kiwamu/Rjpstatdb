@@ -18,7 +18,7 @@ How to use it?
 
     \> print(hpop20)
 
-    \> head(hpop20$data[1])
+    \> head(hpop20@data[[1]])
 
 Warnings
 --------
