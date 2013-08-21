@@ -14,9 +14,10 @@ library(XML)
 ### Common parameters
 .DBURL <- "http://statdb.nstac.go.jp/api/1.0b/app/"
 .appId <- "03f6a0a1f01ec96fdaa8920c51bebbafcab71927"
-.lang <- ifelse(length(grep("ja_JP",
-                            unlist(strsplit(Sys.getlocale(), "/")))) > 0,
-                "J", "E")
+#.lang <- ifelse(length(grep("ja_JP",
+#                            unlist(strsplit(Sys.getlocale(), "/")))) > 0,
+#                "J", "E")
+.lang <- "J"
 
 
 ### Definition of class
@@ -56,6 +57,10 @@ getStatsList <- function(searchWord = "", surveyYears = "",
                          openYears = "", statsField = NULL,
                          statsCode = NULL, searchKind = 1,
                          statsNameList = "") {
+    ## set locale temporarily
+    locale <- Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_ALL", "ja_JP.UTF-8")
+
     gf <- match.call(expand.dots = FALSE)
     m <- match(c("searchWord", "surveyYears", "openYears", "statsField",
                  "statsCode", "searchKind", "statsNameList"),
@@ -92,6 +97,10 @@ getStatsList <- function(searchWord = "", surveyYears = "",
                         function(x) xmlValue(x["SURVEY_DATE"][[1L]])),
         Open = sapply(ResList,
                       function(x) xmlValue(x["OPEN_DATE"][[1L]])))
+
+    ## reset locale
+    Sys.setlocale("LC_ALL", locale)
+
     res
 }
 
@@ -103,6 +112,10 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
                          lvArea = "", cdArea = NULL) {
     if (is.null(statsDataId) & is.null(dataSetId))
         stop("Either statsDataId or dataSetId should be specified.")
+
+    ## set locale temporarily
+    locale <- Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_ALL", "ja_JP.UTF-8")
 
     gf <- match.call(expand.dots = FALSE)
     m <- match(c("statsDataId", "dataSetId", "limit", "lvTab",
@@ -210,6 +223,9 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
                                     "//TABLE_INF//TITLE")[[1L]]),
         survey.date = xmlValue(getNodeSet(root[[3L]][[1L]],
                                           "//TABLE_INF//SURVEY_DATE")[[1L]]))
+
+    ## reset locale
+    Sys.setlocale("LC_ALL", locale)
 
     res
 }

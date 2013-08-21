@@ -54,7 +54,7 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-getStatsList("北海道 AND 人口", surveyYears = 2008)
+getStatsList("Hokkaido AND population", surveyYears = 2008)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

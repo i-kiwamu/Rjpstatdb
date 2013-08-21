@@ -19,3 +19,9 @@ How to use it?
     \> print(hpop20)
 
     \> head(hpop20$data[1])
+
+Warnings
+--------
+このサービスは、次世代統計利用システムのAPI機能を使用していますが、サービスの内容は総務省統計局又は独立行政法人統計センターによって保証されたものではありません。
+
+This services use the API of Gateway to Advanced and User-friendly Statistics Service. The contents of this service are not guranteened by Ministry of Internal Affairs and Communications nor National Statistics Center. 
