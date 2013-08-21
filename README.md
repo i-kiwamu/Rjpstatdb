@@ -8,7 +8,7 @@ How to use it?
 
 1. Search statistial data
 
-    > getStatsList("北海道 AND 人口", surveyYears = 2008)
+    \> getStatsList("北海道 AND 人口", surveyYears = 2008)
     Data_Set    ID           Stat_Name Stat_Code    Org        Survey
     1   0003009759 平成20年住宅・土地...  00200522 総務省 200801-200812
     2   0003009760 平成20年住宅・土地...  00200522 総務省 200801-200812
@@ -38,11 +38,11 @@ How to use it?
 
 2. Get data
 
-    > hpop20 <- getStatsData("0003009759")
+    \> hpop20 <- getStatsData("0003009759")
 
 3. Show the data
 
-    > print(hpop20)
+    \> print(hpop20)
     ID:  0003009759 
     Stat name:  住宅・土地統計調査 
     Government:  総務省 
@@ -67,7 +67,7 @@ How to use it?
     6         00  総数           1         00  全域           1
       Dimension:  2226 13
 
-    > head(hpop20$data[1])
+    \> head(hpop20$data[1])
         value area.code  time.code       area area.level   time time.level
     1 2730500     01000 2008000000     北海道          2 2008年          1
     2 2238500     01001 2008000000 北海道市部          3 2008年          1
