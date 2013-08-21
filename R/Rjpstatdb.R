@@ -29,24 +29,24 @@ setClass(Class = "jpstat",
              gov = "", statistics.name = "", title = "",
              survey.date = ""))
 
-print.jpstat <- function(object) {
-    cat("ID: ", object@id, "\n")
-    cat("Stat name: ", object@stat.name, "\n")
-    cat("Government: ", object@gov, "\n")
-    cat("Statistics name: ", object@statistics.name, "\n")
-    cat("Title: ", object@title, "\n")
-    cat("Survey date: ", object@survey.date, "\n")
+print.jpstat <- function(x, ...) {
+    cat("ID: ", x@id, "\n")
+    cat("Stat name: ", x@stat.name, "\n")
+    cat("Government: ", x@gov, "\n")
+    cat("Statistics name: ", x@statistics.name, "\n")
+    cat("Title: ", x@title, "\n")
+    cat("Survey date: ", x@survey.date, "\n")
     cat("Tables:\n")
-    for (i in seq(object@data)) {
-        cat("  Name: ", names(object@data)[i], "\n")
-        print(head(object@data[[i]]), ...)
-        cat("  Dimension: ", dim(object@data[[i]]), "\n")
+    for (i in seq(x@data)) {
+        cat("  Name: ", names(x@data)[i], "\n")
+        print(head(x@data[[i]]), ...)
+        cat("  Dimension: ", dim(x@data[[i]]), "\n")
     }
+    return(invisible(NULL))
 }
 
-setMethod(f = "print",
-          signature = c("jpstat"),
-          definition = print.jpstat)
+setMethod("show", "jpstat",
+          function(object) print.jpstat(x = object))
 
 
 
