@@ -26,7 +26,8 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-getMetaInfo("0003009759")
+hpop20.mi <- getMetaInfo("0003009759")
+hpop20.mi$TABLE_INF$TITLE$text
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
