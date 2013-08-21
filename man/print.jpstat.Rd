@@ -16,6 +16,9 @@ print.jpstat(jpstat, ...)
   \item{jpstat}{
 object of jpstat class
 }
+\item{...}{
+  additional arguments
+}
 }
 \value{
   print
