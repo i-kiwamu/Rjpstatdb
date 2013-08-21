@@ -3,40 +3,33 @@
 \alias{Rjpstatdb}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+R interface to statistical database organized by Japanese government
+(http://statdb.nstac.go.jp/)
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+R interface to statistical database organized by Japanese government
+(http://statdb.nstac.go.jp/)  
 }
 \details{
 \tabular{ll}{
 Package: \tab Rjpstatdb\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.10\cr
 Date: \tab 2013-08-21\cr
-License: \tab What license is it under?\cr
+License: \tab GPL-2\cr
 }
-~~ An overview of how to use the package, including the most ~~
-~~ important functions ~~
+You can search and get data from http://statdb.nstac.go.jp/
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 }
 \references{
-~~ Literature or other references for background information ~~
+http://statdb.nstac.go.jp/
 }
-~~ Optionally other standard keywords, one per line, from file ~~
-~~ KEYWORDS in the R documentation directory ~~
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
+\keyword{ Rjpstatdb }
+\keyword{ Gateway to Advanced and User-friendly Statistics Services }
 \examples{
-~~ simple examples of the most important functions ~~
+getStatsList("北海道 AND 人口", surveyYears = 2008)
+hpop20 <- getStatsData("0003009759")
+head(hpop20[[1L]])
 }

@@ -22,7 +22,7 @@ lang <- ifelse(length(grep("ja_JP",
 getStatsList <- function(searchWord = "", surveyYears = "",
                          openYears = "", statsField = NULL,
                          statsCode = NULL, searchKind = 1,
-                         statsNameList = "Y") {
+                         statsNameList = "") {
     gf <- match.call(expand.dots = FALSE)
     m <- match(c("searchWord", "surveyYears", "openYears", "statsField",
                  "statsCode", "searchKind", "statsNameList"),
@@ -74,18 +74,6 @@ getMetaInfo <- function(statsDataId) {
         stop(xmlValue(root[[1L]]["ERROR_MSG"][[1L]]))
 
     xmlToList(root[[3L]])
-}
-
-which.deeper <- function(x) {
-    n <- length(x)
-    result <- logical(n)
-    for (i in seq(x)) {
-        if (i == n)
-            result[i] <- TRUE
-        else
-            result[i] <- x[i] >= x[i+1]
-    }
-    return(result)
 }
 
 getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
