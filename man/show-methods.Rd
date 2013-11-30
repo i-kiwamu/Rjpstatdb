@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{show-methods}
 \alias{show,jpstat-method}
-\title{ ~~ Methods for Function \code{show}  ~~}
+\title{Methods for Function \code{show} of \code{"jpstat"}}
 \description{
 Show the object class \code{"jpstat"}
 }

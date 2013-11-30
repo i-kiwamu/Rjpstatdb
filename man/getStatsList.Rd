@@ -1,6 +1,5 @@
 \name{getStatsList}
 \alias{getStatsList}
-\encoding{UTF-8}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Search and get a list of statistical data from http://statdb.nstac.go.jp/
@@ -11,7 +10,9 @@ Advanced and User-friendly Statistics Service''
 (http://statdb.nstac.go.jp/) organized by Japanese government.
 }
 \usage{
-getStatsList(searchWord = "", surveyYears = "", openYears = "", statsField = NULL, statsCode = NULL, searchKind = 1, statsNameList = "")
+getStatsList(searchWord = "", surveyYears = "", openYears = "",
+             statsField = NULL, statsCode = NULL, searchKind = 1,
+             statsNameList = "")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -54,7 +55,7 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-getStatsList("Hokkaido AND population", surveyYears = 2008)
+\donttest{getStatsList("Hokkaido AND population", surveyYears = 2008)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

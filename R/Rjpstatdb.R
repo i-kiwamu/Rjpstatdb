@@ -193,10 +193,10 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
             area.code = sapply(data, xmlGetAttr, "area"),
             time.code = sapply(data, xmlGetAttr, "time"))
         res.i <- transform(res.i,
-                          area = name.areas[area.code],
-                          area.level = level.areas[area.code],
-                          time = name.times[time.code],
-                          time.level = level.times[time.code])
+                           area = name.areas[res.i$area.code],
+                           area.level = level.areas[res.i$area.code],
+                           time = name.times[res.i$time.code],
+                           time.level = level.times[res.i$time.code])
         for (nc in names(name.cats)) {
            nc.full <- sapply(data, xmlGetAttr, nc)
            res.i[paste(nc, ".code", sep="")] <- nc.full

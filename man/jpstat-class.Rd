@@ -15,13 +15,17 @@ Objects can be created by calls of the form \code{new("jpstat", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{data}:}{Object of class \code{"list"} ~~ }
-    \item{\code{id}:}{Object of class \code{"character"} ~~ }
-    \item{\code{stat.name}:}{Object of class \code{"character"} ~~ }
-    \item{\code{gov}:}{Object of class \code{"character"} ~~ }
-    \item{\code{statistics.name}:}{Object of class \code{"character"} ~~ }
-    \item{\code{title}:}{Object of class \code{"character"} ~~ }
-    \item{\code{survey.date}:}{Object of class \code{"character"} ~~ }
+    \item{\code{data}:}{Object of class \code{"list"} which contains dataframes.}
+    \item{\code{id}:}{Object of class \code{"character"} of data ID}
+    \item{\code{stat.name}:}{Object of class \code{"character"} of
+      statistics name of government}
+    \item{\code{gov}:}{Object of class \code{"character"} of government
+      (ministry) that has the authority of data}
+    \item{\code{statistics.name}:}{Object of class \code{"character"} of
+    provided statistics name}
+    \item{\code{title}:}{Object of class \code{"character"} of title of data}
+    \item{\code{survey.date}:}{Object of class \code{"character"} of
+      survey date}
   }
 }
 \section{Methods}{

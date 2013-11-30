@@ -1,6 +1,5 @@
 \name{getStatsData}
 \alias{getStatsData}
-\encoding{UTF-8}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Get statistical data from http://statdb.nstac.go.jp/
@@ -11,7 +10,9 @@ Advanced and User-friendly Statistics Service''
 (http://statdb.nstac.go.jp/) organized by Japanese government.
 }
 \usage{
-getStatsData(statsDataId = NULL, dataSetId = NULL, limit = NULL, lvTab = "", cdTab = NULL, lvTime = "", cdTime = NULL, lvArea = "", cdArea = NULL)
+getStatsData(statsDataId = NULL, dataSetId = NULL, limit = NULL,
+             lvTab = "", cdTab = NULL, lvTime = "", cdTime = NULL,
+             lvArea = "", cdArea = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -74,9 +75,9 @@ Kiwamu Ishikura <ishikura.kiwamu@gmail.com>
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \examples{
-getStatsList("Hokkaido AND population", surveyYears = 2008)
-hpop20 <- getStatsData("0003009759")
-head(hpop20@data[[1L]])
+\donttest{getStatsList("Hokkaido AND population", surveyYears = 2008)}
+\donttest{hpop20 <- getStatsData("0003009759")}
+\donttest{head(hpop20@data[[1L]])}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

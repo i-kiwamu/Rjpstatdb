@@ -2,7 +2,6 @@
 \alias{Rjpstatdb-package}
 \alias{Rjpstatdb}
 \docType{package}
-\encoding{UTF-8}
 \title{
 Rjpstatdb
 }
@@ -29,7 +28,7 @@ http://statdb.nstac.go.jp/
 \keyword{ Rjpstatdb }
 \keyword{ Gateway to Advanced and User-friendly Statistics Services }
 \examples{
-getStatsList("Hokkaido AND population", surveyYears = 2008)
-hpop20 <- getStatsData("0003009759")
-head(hpop20@data[[1L]])
+\donttest{getStatsList("Hokkaido AND population", surveyYears = 2008)}
+\donttest{hpop20 <- getStatsData("0003009759")}
+\donttest{head(hpop20@data[[1L]])}
 }
