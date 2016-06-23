@@ -12,7 +12,7 @@ library(XML)
 
 
 ### Common parameters
-.DBURL <- "http://statdb.nstac.go.jp/api/1.0b/app/"
+.DBURL <- "http://api.e-stat.go.jp/rest/2.0/app/"
 .appId <- "03f6a0a1f01ec96fdaa8920c51bebbafcab71927"
 #.lang <- ifelse(length(grep("ja_JP",
 #                            unlist(strsplit(Sys.getlocale(), "/")))) > 0,
@@ -81,7 +81,7 @@ getStatsList <- function(searchWord = "", surveyYears = "",
         return(invisible(NULL))
     }
 
-    ResList <- root[[3L]][names(root[[3L]]) == "LIST_INF"]
+    ResList <- root[[3L]][names(root[[3L]]) == "TABLE_INF"]
     res <- data.frame(
         Data_Set_ID = sapply(ResList, xmlGetAttr, "id"),
         Stat_Name = sapply(ResList,
@@ -146,13 +146,13 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     }
 
     ## Tables
-    tables <- getNodeSet(root[[3L]][[2L]],
+    tables <- getNodeSet(root[[3L]][[3L]],
                          "//CLASS_INF//CLASS_OBJ[@id='tab']")[[1L]]
     name.tables <- xmlSApply(tables, xmlGetAttr, "name")
     names(name.tables) <- xmlSApply(tables, xmlGetAttr, "code")
 
     ## Categories
-    cats <- getNodeSet(root[[3L]][[2L]],
+    cats <- getNodeSet(root[[3L]][[3L]],
                        "//CLASS_INF//CLASS_OBJ[contains(@id, 'cat')]")
     name.cats <- level.cats <- vector(length(cats), mode = "list")
     for (i in seq(cats)) {
@@ -167,7 +167,7 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
     names(level.cats) <- sapply(cats, xmlGetAttr, "id")
 
     ## Area
-    areas <- getNodeSet(root[[3L]][[2L]],
+    areas <- getNodeSet(root[[3L]][[3L]],
                         "//CLASS_INF//CLASS_OBJ[@id='area']")[[1L]]
     name.areas <- xmlSApply(areas, xmlGetAttr, "name")
     level.areas <- xmlSApply(areas, xmlGetAttr, "level")
@@ -175,7 +175,7 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
         xmlSApply(areas, xmlGetAttr, "code")
 
     ## Time
-    times <- getNodeSet(root[[3L]][[2L]],
+    times <- getNodeSet(root[[3L]][[3L]],
                        "//CLASS_INF//CLASS_OBJ[@id='time']")[[1L]]
     name.times <- xmlSApply(times, xmlGetAttr, "name")
     level.times <- xmlSApply(times, xmlGetAttr, "level")
@@ -184,7 +184,7 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
 
     res.data <- vector(length(tables), mode = "list")
     for (i in 1:length(tables)) {
-        data <- getNodeSet(root[[3L]][[3L]],
+        data <- getNodeSet(root[[3L]][[4L]],
                            paste("//DATA_INF//VALUE[@tab='",
                                  names(name.tables[i]),
                                  "']", sep = ""))
@@ -213,15 +213,15 @@ getStatsData <- function(statsDataId = NULL, dataSetId = NULL,
         data = res.data,
         id = xmlValue(getNodeSet(root[[2L]],
                       "//PARAMETER//STATS_DATA_ID")[[1L]]),
-        stat.name = xmlValue(getNodeSet(root[[3L]][[1L]],
+        stat.name = xmlValue(getNodeSet(root[[3L]][[2L]],
                              "//TABLE_INF//STAT_NAME")[[1L]]),
-        gov = xmlValue(getNodeSet(root[[3L]][[1L]],
+        gov = xmlValue(getNodeSet(root[[3L]][[2L]],
                                   "//TABLE_INF//GOV_ORG")[[1L]]),
-        statistics.name = xmlValue(getNodeSet(root[[3L]][[1L]],
+        statistics.name = xmlValue(getNodeSet(root[[3L]][[2L]],
                                               "//TABLE_INF//STATISTICS_NAME")[[1L]]),
-        title = xmlValue(getNodeSet(root[[3L]][[1L]],
+        title = xmlValue(getNodeSet(root[[3L]][[2L]],
                                     "//TABLE_INF//TITLE")[[1L]]),
-        survey.date = xmlValue(getNodeSet(root[[3L]][[1L]],
+        survey.date = xmlValue(getNodeSet(root[[3L]][[2L]],
                                           "//TABLE_INF//SURVEY_DATE")[[1L]]))
 
     ## reset locale
